@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 import logging
-
+from django.contrib.auth.hashers import make_password
 def HomePage(request):
     return render(request, template_name="home.html")
 
@@ -17,8 +17,9 @@ def SignUp(request):
         phone = request.POST['phone']
         age = request.POST['age']
         email = request.POST['email']
-        password = request.POST['password1']
+        password1 = request.POST['password1']
 
+        password = make_password(password1)
         user_profile = CustomUser()
         user_profile.username = username
         user_profile.first_name = first_name
@@ -37,18 +38,14 @@ def SignUp(request):
 
 def SignIn(request):
     if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None and not user.is_staff:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=f"{username}", password=password)
+        if user:
             login(request, user)
             return redirect("home")
         else:
-            print(logging.error)
-            # You can handle authentication failure here
-            pass
-
-    # For GET requests or when authentication fails, return the sign-in form
+            print(username, password)
     return render(request, "signin.html")
 
 

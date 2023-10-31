@@ -8,6 +8,3 @@ class CustomUser(AbstractUser):
     age = models.PositiveSmallIntegerField(null=True, blank=False)
     password = models.CharField(max_length=10)
     phone = models.CharField(max_length=20)
-
-    def save(self, *args, **kwargs):
-        super(CustomUser, self).save(*args, **kwargs)
