@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'phonenumbers',
     'shop',
     'users',
-    'products'
+    'products',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -55,8 +56,6 @@ MIDDLEWARE = [
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
-
-
 
 ROOT_URLCONF = 'shop.urls'
 
