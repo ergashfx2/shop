@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'shop',
     'users',
     'products',
-    'bootstrap5',
+    'django_bootstrap5',
+    "bootstrap5"
 ]
 
 MIDDLEWARE = [

@@ -7,4 +7,5 @@ from phone_field import PhoneField
 class CustomUser(AbstractUser):
     age = models.PositiveSmallIntegerField(null=True, blank=False)
     password = models.CharField(max_length=10)
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=15, null=True)
+
