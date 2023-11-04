@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from password_strength import PasswordPolicy
 from .password_check import is_strong_password
 from .forms import CustomUserCreationForm, LoginForm
 from .models import CustomUser
