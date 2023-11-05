@@ -18,9 +18,9 @@ def HomePage(request):
 
     context = {
         'products': products,
-        'users' : users# Pass the list of articles to the template
+        'users': users
     }
-    return render(request, template_name="home.html",context=context)
+    return render(request, template_name="home.html", context=context)
 
 
 def SignUp(request):

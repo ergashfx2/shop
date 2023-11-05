@@ -5,4 +5,4 @@ from .models import Product
 
 # Create your views here.
 
-
+def ProductDetailed (request)
