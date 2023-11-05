@@ -43,6 +43,15 @@
             </ul>
 
     {% if user.is_authenticated %}
+        {% if user.image %}
+                    <div class="col-xs-3 col-sm-1">
+            <img src="{{ user.image.url }}" alt="{{ user.username }}" class="mg-fluid rounded-circle img-thumbnail">
+                    </div>
+        {% else %}
+                    <div class="col-xs-3 col-sm-1">
+            <img src="{% static 'img/unknown.jpg' %}" alt="{{ user.username }}" class="mg-fluid rounded-circle img-thumbnail">
+                    </div>
+        {% endif %}
 	<div class="dropdown">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           {{user.username}}

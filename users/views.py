@@ -7,10 +7,21 @@ from .forms import CustomUserCreationForm, LoginForm
 from .models import CustomUser
 import logging
 from django.contrib.auth.hashers import make_password
+from products.models import Product
 
 
 def HomePage(request):
-    return render(request, template_name="home.html")
+    products = Product.objects.all()
+    users = CustomUser.objects.all()
+    template_name = 'home.html',
+    template_name = 'base.html'
+
+    context = {
+        'products': products,
+        'users' : users# Pass the list of articles to the template
+    }
+    return render(request, template_name="home.html",context=context)
+
 
 def SignUp(request):
     if request.method == 'POST':
@@ -21,6 +32,7 @@ def SignUp(request):
         age = request.POST.get('age')
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
+        image = request.POST.get("image")
         if CustomUser.objects.filter(username=username).exists():
             messages.error(request, "Foydalanuvchi nomi band ! Iltimos boshqa nom o'ylab toping")
             return render(request, 'signup.html', {'form': CustomUserCreationForm()})
@@ -40,6 +52,7 @@ def SignUp(request):
             user_profile.age = age
             user_profile.email = email
             user_profile.password = password
+            user_profile.image = image
             user_profile.save()
 
         return redirect('home')  # Replace 'home' with the URL name of your home page

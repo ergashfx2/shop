@@ -8,4 +8,4 @@ class CustomUser(AbstractUser):
     age = models.PositiveSmallIntegerField(null=True, blank=False)
     password = models.CharField(max_length=10)
     phone = models.CharField(max_length=15, null=True)
-
+    image = models.ImageField(upload_to='users/',blank=True, null=True)
