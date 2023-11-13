@@ -27,6 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', auth_views.LoginView.as_view()),
     path('user/', include(users.urls)),
+    path('product/', include('products.urls')),
+    path('', include('orders.urls')),
+
 ]
 
 if settings.DEBUG:

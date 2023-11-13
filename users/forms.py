@@ -8,10 +8,16 @@ class LoginForm(forms.Form):
     password = forms.CharField(label="Parol", widget=forms.PasswordInput)
 
 
+from django import forms
+
+from django import forms
+from .models import CustomUser
+
+
 class CustomUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm):
+    class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'age', 'phone')
+        fields = '__all__'
 
 
 class CustomUserChangeForm(UserChangeForm):

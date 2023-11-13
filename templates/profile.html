@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+                  <div class="text-center">
+  <img style="width: 30%;height: auto;" class="card-img-top" src="{{ user.image.url }}" alt="{{ user.username }}">
+              </div>
+<div class="vstack gap-3">
+  <div class="bg-light border fs-2">Username : {{ user.username }}</div>
+  <div class="bg-light border fs-2">{{ user.first_name }}</div>
+  <div class="bg-light border fs-2">{{ user.last_name }}</div>
+  <div class="bg-light border fs-2">{{ user.phone }}</div>
+  <div class="bg-light border fs-2">{{ user.age }}</div>
+  <div class="bg-light border fs-2">{{ user.email }}</div>
+</div>
+{% endblock content %}

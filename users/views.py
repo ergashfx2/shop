@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .password_check import is_strong_password
 from .forms import CustomUserCreationForm, LoginForm
@@ -8,13 +9,19 @@ from .models import CustomUser
 import logging
 from django.contrib.auth.hashers import make_password
 from products.models import Product
+from django.contrib.auth.decorators import login_required
 
 
 def HomePage(request):
-    products = Product.objects.all()
     users = CustomUser.objects.all()
-    template_name = 'home.html',
-    template_name = 'base.html'
+    products = Product.objects.all()
+    # Set the number of products to display per page
+    products_per_page = 10
+
+    paginator = Paginator(products, products_per_page)
+    page = request.GET.get('page')
+
+    products = paginator.get_page(page)
 
     context = {
         'products': products,
@@ -32,7 +39,7 @@ def SignUp(request):
         age = request.POST.get('age')
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
-        image = request.POST.get("image")
+        image = request.FILES.get('image')
         if CustomUser.objects.filter(username=username).exists():
             messages.error(request, "Foydalanuvchi nomi band ! Iltimos boshqa nom o'ylab toping")
             return render(request, 'signup.html', {'form': CustomUserCreationForm()})
@@ -54,11 +61,13 @@ def SignUp(request):
             user_profile.password = password
             user_profile.image = image
             user_profile.save()
-
-        return redirect('home')  # Replace 'home' with the URL name of your home page
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+            user = authenticate(request, username=f"{username}", password=password)
+            if user:
+                login(request, user)
+                return redirect("home")
+            else:
+                form = CustomUserCreationForm()
+                return render(request, 'signup.html', {'form': form})
 
 
 def SignIn(request):
@@ -78,6 +87,15 @@ def SignIn(request):
 def my_logout_view(request):
     logout(request)
     return redirect('home')
+
+
+@login_required
+def Profile(request):
+    user = CustomUser.objects.get(username = request.user.username)
+    context = {
+        'user': user
+    }
+    return render(request, template_name="profile.html", context=context)
 
 
 def Password_Reset(request):
