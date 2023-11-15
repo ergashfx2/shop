@@ -24,22 +24,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-light" href="">Bosh sahifa <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-light" href="{% url 'home' %}">Bosh sahifa <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Ayollar</a>
+                    <a class="nav-link text-light" href="{% url 'product_filters' category='Ayollar' %}">Ayollar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Erkaklar</a>
+                    <a class="nav-link text-light" href="{% url 'product_filters' category='Erkaklar' %}">Erkaklar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Bolalar</a>
+                    <a class="nav-link text-light" href="{% url 'product_filters' category='Bolalar' %}">Bolalar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Uy-Xo'jalik</a>
+                    <a class="nav-link text-light" href="{% url 'product_filters' category="Uy-Xo'jalik" %}">Uy-Xo'jalik</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Salomatlik</a>
+                    <a class="nav-link text-light" href="{% url 'product_filters' category='Salomatlik' %}">Salomatlik</a>
                 </li>
             </ul>
 
@@ -58,12 +58,12 @@
     {{ user.username }}
   </button>
   <ul style="min-width: 200px;font-size: 20px;background-color: black;color: white" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li ><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="#"><i class="bi bi-handbag"></i> Buyurtmalarim</a></li>
-      <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="#"><i class="bi bi-bell"></i> Bildirishnomalar</a></li>
+    <li ><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="{% url 'orders' %}"><i class="bi bi-handbag"></i> Buyurtmalarim</a></li>
+      <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="{% url 'notifications' %}"><i class="bi bi-bell"></i> Bildirishnomalar</a></li>
     <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="{% url 'profile' %}"><i class="bi bi-person"></i> Profil</a></li>
-      <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="#"><i class="bi bi-gear"></i> Sozlamalar</a></li>
-      <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="#"><i class="bi bi-question-circle"></i> Biz haqimizda</a></li>
-      <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="#"><i class="bi bi-chat-left"></i> Bog'lanish</a></li>
+      <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="{% url 'settings' %}"><i class="bi bi-gear"></i> Sozlamalar</a></li>
+      <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="{% url 'about' %}"><i class="bi bi-question-circle"></i> Biz haqimizda</a></li>
+      <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="{% url 'contact' %}"><i class="bi bi-chat-left"></i> Bog'lanish</a></li>
     <li><a style="color: white" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';" class="dropdown-item" href="{% url 'logout' %}"><i class="bi bi-box-arrow-left"></i> Chiqib ketish</a></li>
   </ul>
 </div>

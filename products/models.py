@@ -1,11 +1,11 @@
 from django.db import models
 
 PRODUCT_TYPE_CHOICES = [
-    ('ayollar', 'Ayollar'),
-    ('erkaklar', 'Erkaklar'),
-    ('bolalar', 'Bolalar'),
-    ('uy-xojalik', "Uy-Xo'jalik"),
-    ('salomatlik', "Salomatlik")
+    ('Ayollar', 'Ayollar'),
+    ('Erkaklar', 'Erkaklar'),
+    ('Bolalar', 'Bolalar'),
+    ("Uy-Xo'jalik", "Uy-Xo'jalik"),
+    ('Salomatlik', "Salomatlik")
 ]
 
 

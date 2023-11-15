@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
+    {% if user.image %}
                   <div class="text-center">
-  <img style="width: 30%;height: auto;" class="card-img-top" src="{{ user.image.url }}" alt="{{ user.username }}">
+  <img style="width: 30%;height: auto;" class="card-img-top rounded-circle shadow-4-strong" src="{{ user.image.url }}" alt="{{ user.username }}">
               </div>
+    {% endif %}
 <div class="vstack gap-3">
   <div class="bg-light border fs-2">Username : {{ user.username }}</div>
-  <div class="bg-light border fs-2">{{ user.first_name }}</div>
-  <div class="bg-light border fs-2">{{ user.last_name }}</div>
-  <div class="bg-light border fs-2">{{ user.phone }}</div>
-  <div class="bg-light border fs-2">{{ user.age }}</div>
-  <div class="bg-light border fs-2">{{ user.email }}</div>
+  <div class="bg-light border fs-2">Familiya : {{ user.first_name }}</div>
+  <div class="bg-light border fs-2">Ism : {{ user.last_name }}</div>
+  <div class="bg-light border fs-2">Telefon raqam : {{ user.phone }}</div>
+  <div class="bg-light border fs-2">Yosh : {{ user.age }}</div>
+      <div class="bg-light border fs-2">Manzil : {{ user.location }}</div>
+  <div class="bg-light border fs-2">Email : {{ user.email }}</div>
 </div>
+    <hr class="hr" />
+    <a class="btn-primary btn-lg" href="{% url 'edit_profile' %}"> Tahrirlash</a>
 {% endblock content %}

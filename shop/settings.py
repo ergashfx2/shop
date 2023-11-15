@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'django_bootstrap5',
-    'bootstrap5'
+    'bootstrap5',
+    'notifications'
+
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

@@ -14,6 +14,12 @@ from django import forms
 from .models import CustomUser
 
 
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'phone', 'image', 'age', 'location']
+
+
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
