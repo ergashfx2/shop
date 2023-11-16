@@ -41,8 +41,18 @@
                 <li class="nav-item">
                     <a class="nav-link text-light" href="{% url 'product_filters' category='Salomatlik' %}">Salomatlik</a>
                 </li>
-            </ul>
 
+    <li class="nav-item">
+        <div class="d-flex">
+      <form class="d-flex" method=POST action="{% url 'search' %}">
+        {% csrf_token %}
+
+        <input class="form-control me-2" type="search" placeholder="Qidiruv" aria-label="Search" name="searched">
+        <button type="submit" class="btn btn-danger">Qidirish</button>
+      </form>
+        </div>
+    </li>
+            </ul>
     {% if user.is_authenticated %}
     {% if user.image %}
         <div class="col-xs-3 col-sm-1">

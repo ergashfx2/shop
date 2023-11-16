@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+		{% if searched %}
+<div style="text-align: center;">
+		<h1 style="color: red">Qidiruv natijalari </h1>
+		<br/>
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-2 mb-2">
+                        <div class="card" style="width: 13rem;">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.title |slice:":15" }}...</h5>
+                                <p class="card-text">{{ product.price }}</p>
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm">BATAFSIL</a>
+                                {% if user.is_staff %}
+                                <br><br><a href="{% url 'edit_product' product.id %}" class="btn btn-primary btn-sm">TAHRIRLASH</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if forloop.counter|divisibleby:6 %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="pagination">
+                <span class="step-links">
+                    <hr class="hr" />
+                    {% if products.has_previous %}
+                        <a href="?page=1" >&laquo; Birinchi</a>
+                        <a href="?page={{ products.previous_page_number }}">Oldingi</a>
+                    {% endif %}
+
+                    <span class="current-page">
+                        Sahifa {{ products.number }} / {{ products.paginator.num_pages }}
+                    </span>
+
+                    {% if products.has_next %}
+                        <a href="?page={{ products.next_page_number }}">Keyingi</a>
+                    {% endif %}
+                </span>
+                <hr class="hr" />
+            </div>
+        </div>
+	{% else %}
+	<h1> Hech narsa topilmadi</h1>
+{% endif %}
+
+{% endblock %}

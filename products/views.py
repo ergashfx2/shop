@@ -48,6 +48,21 @@ def Edit_Product(request, pk):
     return render(request, 'edit_product.html', {'form': form, 'product': product})
 
 
+def Search_Product(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        products = Product.objects.filter(title__contains=searched)
+
+        return render(request,
+                      'search_product.html',
+                      {'searched': searched,
+                       'products': products})
+    else:
+        return render(request,
+                      'home.html',
+                      {})
+
+
 def ProductFilter(request, category):
     products = Product.objects.filter(type=category)
     context = {
