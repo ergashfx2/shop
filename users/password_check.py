@@ -2,7 +2,6 @@ import re
 
 
 def is_strong_password(password):
-    # Define criteria for a strong password
     min_length = 8
     has_uppercase = re.search(r'[A-Z]', password)
     has_lowercase = re.search(r'[a-z]', password)

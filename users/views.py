@@ -1,12 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .password_check import is_strong_password
-from .forms import CustomUserCreationForm, LoginForm, EditProfileForm
+from .forms import LoginForm, EditProfileForm
 from .models import CustomUser
-import logging
 from django.contrib.auth.hashers import make_password
 from products.models import Product
 from django.contrib.auth.decorators import login_required
@@ -16,7 +14,6 @@ from orders.models import Order
 def HomePage(request):
     users = CustomUser.objects.all()
     products = Product.objects.all()
-    # Set the number of products to display per page
     products_per_page = 12
 
     paginator = Paginator(products, products_per_page)
@@ -44,13 +41,13 @@ def SignUp(request):
         location = request.POST.get('location')
         if CustomUser.objects.filter(username=username).exists():
             messages.error(request, "Foydalanuvchi nomi band ! Iltimos boshqa nom o'ylab toping")
-            return render(request, 'signup.html', {'form': CustomUserCreationForm()})
+            return render(request, 'registration/signup.html', )
         elif CustomUser.objects.filter(email=email).exists():
             messages.error(request, "Bu email manzili ro'yxatdan o'tgan ! Iltimos boshqa email kiriting")
-            return render(request, 'signup.html', {'form': CustomUserCreationForm()})
+            return render(request, 'registration/signup.html', )
         elif not is_strong_password(password1):
             messages.error(request, "Bu parol juda ham oson ! Iltimos boshqa qiyinroq parol kiriting")
-            return render(request, 'signup.html', {'form': CustomUserCreationForm()})
+            return render(request, 'registration/signup.html', )
         else:
             password = make_password(password1)
             user_profile = CustomUser()
@@ -66,7 +63,7 @@ def SignUp(request):
             user_profile.save()
             return redirect("signin")
     else:
-        return render(request, 'signup.html')
+        return render(request, 'registration/signup.html')
 
 
 def SignIn(request):
@@ -80,7 +77,7 @@ def SignIn(request):
         else:
             pass
     form = LoginForm()
-    return render(request, "signin.html", {'form': form})
+    return render(request, "registration/signin.html", {'form': form})
 
 
 def my_logout_view(request):
@@ -94,7 +91,7 @@ def Profile(request):
     context = {
         'user': user
     }
-    return render(request, template_name="profile.html", context=context)
+    return render(request, template_name="user/profile.html", context=context)
 
 
 @login_required
@@ -111,7 +108,7 @@ def MyOrders(request):
         'user': user
     }
 
-    return render(request, template_name="orders.html", context=context)
+    return render(request, template_name="order/orders.html", context=context)
 
 
 @login_required
@@ -128,34 +125,34 @@ def Notifications(request):
         'user': user
     }
 
-    return render(request, template_name="orders.html", context=context)
+    return render(request, template_name="order/orders.html", context=context)
 
 
 @login_required
 def EditProfile(request):
-    user = request.user  # Assuming the user is authenticated
+    user = request.user
     if request.method == 'POST':
         form = EditProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('profile')  # Redirect to the profile page after a successful update
+            return redirect('profile')
     else:
         form = EditProfileForm(instance=user)
 
-    return render(request, 'edit_profile.html', {'form': form})
+    return render(request, 'registration/edit_profile.html', {'form': form})
 
 
 def About(request):
-    return render(request, template_name="about.html")
+    return render(request, template_name="user/about.html")
 
 
 def Password_Reset(request):
-    return render(request, template_name="password_reset.html")
+    return render(request, template_name="registration/password_reset.html")
 
 
 def Settings(request):
-    return render(request, template_name="settings.html")
+    return render(request, template_name="user/settings.html")
 
 
 def Contact(request):
-    return render(request, template_name="contact.html")
+    return render(request, template_name="user/contact.html")

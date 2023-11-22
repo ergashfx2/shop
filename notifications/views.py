@@ -14,7 +14,7 @@ def NotificationList(request):
         "user": user
     }
 
-    return render(request, template_name="notifications.html", context=context)
+    return render(request, template_name="user/notifications.html", context=context)
 
 
 def Create_Notification(request):
@@ -26,10 +26,10 @@ def Create_Notification(request):
                     title = form.cleaned_data['title']
                     body = form.cleaned_data['body']
                     notification = Notifications.objects.create(
-                        title=title,  # Replace with the actual field you want to save
+                        title=title,
                         body=body,
                     )
                     return redirect('home')
         else:
             form = Create_Notification_Form()
-            return render(request, "create_notifications.html", {"form": form})
+            return render(request, "admin/create_notifications.html", {"form": form})

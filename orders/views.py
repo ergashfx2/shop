@@ -13,11 +13,11 @@ def Order_Success(request):
     if request.user.is_authenticated:
         message = messages.success(request,
                                    "Buyurtmangiz muvaffaqiyatli qabul qilindi. Buyurtmangiz holatini buyurtmalarim bo'limidan kuzatib borishingiz mumkin")
-        return render(request, template_name="order_success.html", context=message)
+        return render(request, template_name="order/order_success.html", context=message)
     else:
         message = messages.success(request,
                                    "Buyurtmangiz muvaffaqiyatli qabul qilindi. Buyurtmangiz holatini kuzatib borish uchun saytdan ro'yxatdan o'ting")
-        return render(request, template_name="order_success.html", context=message)
+        return render(request, template_name="order/order_success.html", context=message)
 
 
 def EditOrder(request, pk):
@@ -31,7 +31,7 @@ def EditOrder(request, pk):
     else:
         form = EditOrderForm(instance=order)
 
-    return render(request, 'edit_order.html', {'form': form, 'order': order})
+    return render(request, 'admin/edit_order.html', {'form': form, 'order': order})
 
 
 def DeleteOrder(request,pk):
@@ -43,4 +43,4 @@ def DeleteOrder(request,pk):
     orders = {
         'order' : order
     }
-    return render(request,template_name="delete_order.html",context=orders)
+    return render(request, template_name="admin/delete_order.html", context=orders)

@@ -1,4 +1,4 @@
-from django.core.paginator import Paginator
+
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from orders.forms import CreateOrder
@@ -20,7 +20,7 @@ def Add_Product(request):
                     type = form.cleaned_data['type']
                     image = form.cleaned_data['image']
                     product = Product.objects.create(
-                        title=title,  # Replace with the actual field you want to save
+                        title=title,
                         description=description,
                         type=type,
                         price=price,
@@ -31,7 +31,7 @@ def Add_Product(request):
                     return redirect('home')
         else:
             form = AddProduct()
-            return render(request, "add_product.html", {"form": form})
+            return render(request, "admin/add_product.html", {"form": form})
 
 
 def Edit_Product(request, pk):
@@ -45,7 +45,7 @@ def Edit_Product(request, pk):
     else:
         form = EditProduct(instance=product)
 
-    return render(request, 'edit_product.html', {'form': form, 'product': product})
+    return render(request, 'admin/edit_product.html', {'form': form, 'product': product})
 
 
 def Search_Product(request):
@@ -54,7 +54,7 @@ def Search_Product(request):
         products = Product.objects.filter(title__contains=searched)
 
         return render(request,
-                      'search_product.html',
+                      'product/search_product.html',
                       {'searched': searched,
                        'products': products})
     else:
@@ -86,13 +86,13 @@ def ProductDetail(request, pk):
         if request.user.is_authenticated:
             product_name = Product.objects.get(pk=pk).title
             user = CustomUser.objects.get(username=request.user.username)
-            name = user.first_name
+            name = user.last_name
             phone = user.phone
             location = user.location
             status = "Qabul qilindi"
             print(user.username)
             order = Order.objects.create(
-                product=product_name,  # Replace with the actual field you want to save
+                product=product_name,
                 customer_name=name,
                 customer_phone=phone,
                 customer_location=location,
@@ -107,11 +107,11 @@ def ProductDetail(request, pk):
                 phone = form.cleaned_data['phone']
                 location = form.cleaned_data['location']
                 order = Order.objects.create(
-                    product=product_name,  # Replace with the actual field you want to save
+                    product=product_name,
                     customer_name=name,
                     customer_phone=phone,
                     customer_location=location
                 )
                 return redirect('order_success')
 
-    return render(request, "product_detail.html", product)
+    return render(request, "product/product_detail.html", product)

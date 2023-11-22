@@ -35,18 +35,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'phone_field',
-    'phonenumbers',
     'shop',
     'users',
     'products',
     'orders',
     'django_bootstrap5',
-    'bootstrap5',
     'notifications'
 
 ]
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 MIDDLEWARE = [
