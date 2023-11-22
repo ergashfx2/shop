@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <hr class="hr" />
+    <a class="fs-1 btn btn-secondary d-block" href="{% url 'profile' %}"> Shaxsiy ma'lumotlar</a><br>
+        <hr class="hr" />
+        <a class="fs-1 btn btn-secondary d-block" href="{% url 'notifications' %}">Bildirishnomalar</a><br>
+        <hr class="hr" />
+    <a class="fs-1 btn btn-secondary d-block" href="{% url 'orders' %}">Buyurtmalar</a><br>
+
+
+{% endblock content %}

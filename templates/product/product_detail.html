@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="text-center">
+            {%  if product.image.url %}
+                <img style="width: 30%;height: auto;" class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
+            {% endif %}
+            <h1>{{ product.title }}</h1>
+            <p> {{ product.description}}</p>
+            <h1>{{ product.price }}</h1>
+        </div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            {% bootstrap_button button_type="submit" content="Buyurtma berish" button_size="lg" button_class="btn-danger mx-auto d-block" %}
+        {% else %}
+            {% bootstrap_form form %}
+            {% bootstrap_button button_type="submit" content="Buyurtma berish" button_size="lg" button_class="btn-danger mx-auto d-block" %}
+            </form>
+        {% endif %}
+{% endblock content %}

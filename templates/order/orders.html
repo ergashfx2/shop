@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block title %}Orders{% endblock title %}
+{% block content %}
+    <div class="text-center">
+        <h1>{{ user.first_name }} ismli foydalanuvchining buyurtmalari </h1>
+    </div>
+    {% for order in orders %}
+        <span class="border border-primary d-inline">
+            <div class="p-3 mb-2 bg-secondary text-white m-0">
+                {% if order.status == 'Qabul qilindi' %}
+                    <div class="text-right"><button type="button" class="btn btn-info">{{ order.status }}</button></div>
+                {% elif order.status == 'Yetkazilmoqda' %}
+                    <div class="text-right"><button type="button" class="btn btn-primary">{{ order.status }}</button></div>
+                {% elif order.status == 'Bekor qilindi' %}
+                    <div class="text-right"><button type="button" class="btn btn-danger">{{ order.status }}</button></div>
+                {% else %}
+                    <div class="text-right"><button type="button" class="btn btn-success">{{ order.status }}</button></div>
+                {% endif %}
+                {% if user.is_staff %}
+                    <h5 class="d-inline"> Buyurtma raqami :</h5> <p class="d-inline"> {{ order.customer_name }}</p><br>
+                {% endif %}
+                <h5 class="d-inline"> Buyurtma raqami :</h5> <p class="d-inline"> {{ order.pk }}</p><br>
+                <h5 class="d-inline"> Mahsulot nomi :</h5> <p class="d-inline"> {{ order.product }}</p><br>
+                <h5 class="d-inline"> Buyurtmachi raqami :</h5> <p class="d-inline"> {{ order.customer_phone }}</p><br>
+                <h5 class="d-inline"> Buyurtmachi manzili :</h5> <p class="d-inline"> {{ order.customer_location }}</p><br>
+            </div>
+            {% if user.is_staff %}
+                <a class="btn btn-primary" href="{% url 'edit_order' order.pk %}" role="button">Tahrirlash</a>
+            {% endif %}
+            {% if order.status != "Yetkazib berildi" %}
+                <a class="btn btn-danger" href="{% url 'delete_order' order.pk %}" role="button">Bekor qilish</a>
+            {% endif %}
+        </span>
+    {% endfor %}
+{% endblock content %}
