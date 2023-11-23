@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid">
+    < class="container-fluid">
         <p class="text-center">
             {%  if product.image.url %}
                 <img style="width: 30%;height: auto;" class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
@@ -11,7 +11,7 @@
         <hr>
             <h1>{{ product.title }}</h1>
         <hr>
-        <p>{{ product.description |safe}} </div>
+    <p>{{ product.description |safe}} </p>
         <hr>
     <h1> <b>Narxi : {{ product.price }} so'm</b></h1>
         </div>
