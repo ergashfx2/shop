@@ -23,6 +23,7 @@ import users.urls
 from users.views import HomePage
 
 urlpatterns = [
+    path('summernote/', include('django_summernote.urls')),
     path('', HomePage, name='home'),
     path('admin/', admin.site.urls),
     path('user/', auth_views.LoginView.as_view()),

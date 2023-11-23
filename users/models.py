@@ -22,6 +22,6 @@ Location_choices = (
 class CustomUser(AbstractUser):
     age = models.PositiveSmallIntegerField(null=True, blank=False)
     password = models.CharField(max_length=10)
-    phone = models.IntegerField(max_length=15, null=True)
+    phone = models.IntegerField( null=True)
     image = models.ImageField(upload_to='users/',blank=True, null=True)
-    location = models.CharField(max_length=255, choices=Location_choices)
+    location = models.CharField(max_length=255, choices=Location_choices,default=None)

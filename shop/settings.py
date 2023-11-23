@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'django_bootstrap5',
-    'notifications'
+    'notifications',
+    'ckeditor',
+    'ckeditor_uploader',
+    'django_summernote',
 
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

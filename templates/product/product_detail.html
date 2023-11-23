@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load static %}
+
 {% block content %}
     <div class="container-fluid">
-        <div class="text-center">
+        <p class="text-center">
             {%  if product.image.url %}
                 <img style="width: 30%;height: auto;" class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
             {% endif %}
+        <hr>
             <h1>{{ product.title }}</h1>
-            <p> {{ product.description}}</p>
-            <h1>{{ product.price }}</h1>
+        <hr>
+        <p>{{ product.description |safe}} </div>
+        <hr>
+    <h1> <b>Narxi : {{ product.price }} so'm</b></h1>
         </div>
     </div>
     <form method="post">

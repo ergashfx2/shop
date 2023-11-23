@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
-{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'django_summernote/summernote-bs4.css' %}">
+<script src="{% static 'django_summernote/summernote-bs4.js' %}"></script>
 
+{% block content %}
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {% bootstrap_form form %}
