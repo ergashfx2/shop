@@ -20,6 +20,12 @@
         {% if user.is_authenticated %}
             {% bootstrap_button button_type="submit" content="Buyurtma berish" button_size="lg" button_class="btn-danger mx-auto d-block" %}
         {% else %}
+                <script>
+        function disallowSpaces(input) {
+            // Remove spaces from the input value
+            input.value = input.value.replace(/\s/g, '');
+        }
+    </script>
             {% bootstrap_form form %}
             {% bootstrap_button button_type="submit" content="Buyurtma berish" button_size="lg" button_class="btn-danger mx-auto d-block" %}
             </form>

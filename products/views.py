@@ -90,7 +90,6 @@ def ProductDetail(request, pk):
             phone = user.phone
             location = user.location
             status = "Qabul qilindi"
-            print(user.username)
             order = Order.objects.create(
                 product=product_name,
                 customer_name=name,
@@ -98,7 +97,7 @@ def ProductDetail(request, pk):
                 customer_location=location,
                 status=status
             )
-            return redirect('order_success')
+            return redirect('order_success',pk=pk)
         else:
             form = CreateOrder(request.POST)
             if form.is_valid():
@@ -106,12 +105,7 @@ def ProductDetail(request, pk):
                 name = form.cleaned_data['name']
                 phone = form.cleaned_data['phone']
                 location = form.cleaned_data['location']
-                order = Order.objects.create(
-                    product=product_name,
-                    customer_name=name,
-                    customer_phone=phone,
-                    customer_location=location
-                )
-                return redirect('order_success')
+                Order.objects.create(product=product_name,customer_name=name, customer_phone=phone, customer_location=location)
+                return redirect('order_success',pk=pk)
 
     return render(request, "product/product_detail.html", product)

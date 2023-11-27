@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Order Success{% endblock title %}
-
+{% load mathfilters %}
 {% block content %}
     <div class="container">
+    <div class="text-center">    <img src="{% static "img/success.png" %}" height="120rem"></div>
+    <hr>
         {% if messages %}
             {% for message in messages %}
                 <div class="text-center">
@@ -11,6 +13,16 @@
                 {{ message }}
             {% endfor %}
                 {% endif %}
+    <hr>
+    <h2 style="display: inline; padding-right: 20rem;">Mahsulot </h2><h2 style="display: inline">Summa</h2>
+    <hr>
+    <h5 style="display: inline; padding-right: 20rem;">{{ product.title }} </h5><h5 style="display: inline">{{ product.price }}</h5>
+    <hr>
+    <h5 style="display: inline; padding-right: 19rem;">Yetkazib berish narxi </h5><h5 style="display: inline">30,000 so'm</h5>
+    <hr>
+    <div>
+    <h1 style="color: red">Jami : {{ product.price | addition:30 }} So'm</h1>
+    </div>
 
     </div>
                 {% if user.is_authenticated %}

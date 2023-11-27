@@ -18,3 +18,7 @@ class Order(models.Model):
     customer_name = models.CharField(max_length=200)
     customer_phone = models.IntegerField()
     customer_location = models.CharField(max_length=200, choices=Location_choices)
+
+    def save(self, *args, **kwargs):
+        self.customer_phone = int(str(self.customer_phone).replace(" ", ""))
+        super().save(*args, **kwargs)
