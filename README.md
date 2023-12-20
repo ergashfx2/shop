@@ -28,10 +28,13 @@ This repository contains the source code for an online shop website built using 
    python manage.py migrate
 4. **Run the Development Server:**
    ```bash
-  python manage.py runserver
+   python manage.py runserver
 5.**Visit http://localhost:8000 in your browser to access the application.**
 
 ## Usage
 - Create an account or log in to start exploring the online shop.
 - Add products to your cart and proceed to checkout.
 - Use Summernote for rich text editing when creating or updating product descriptions.
+
+## Contributing
+Contributions are welcome! Feel free to open issues, submit pull requests, or provide feedback to help improve the project.
