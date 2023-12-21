@@ -18,7 +18,7 @@ This repository contains the source code for an online shop website built using 
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/ergashfx/online-shop.git
+   git clone https://github.com/ergashfx/shop.git
 
 2. **Install Dependencies:**
    ```bash
