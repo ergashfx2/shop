@@ -2,6 +2,7 @@
 
 import django.contrib.auth.models
 import django.contrib.auth.validators
+import phone_field
 from django.db import migrations, models
 import django.utils.timezone
 

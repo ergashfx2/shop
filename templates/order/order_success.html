@@ -4,32 +4,45 @@
 {% load mathfilters %}
 {% block content %}
     <div class="container">
-    <div class="text-center">    <img src="{% static "img/success.png" %}" height="120rem"></div>
+    <div class="text-center"><img src="{% static "img/success.png" %}" height="120rem"></div>
     <hr>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="text-center">
-            <div class="alert alert-success" role="alert">
-                {{ message }}
-            {% endfor %}
-                {% endif %}
-    <hr>
-    <h2 style="display: inline; padding-right: 20rem;">Mahsulot </h2><h2 style="display: inline">Summa</h2>
-    <hr>
-    <h5 style="display: inline; padding-right: 20rem;">{{ product.title }} </h5><h5 style="display: inline">{{ product.price }}</h5>
-    <hr>
-    <h5 style="display: inline; padding-right: 19rem;">Yetkazib berish narxi </h5><h5 style="display: inline">30,000 so'm</h5>
-    <hr>
-    <div>
-    <h1 style="color: red">Jami : {{ product.price | addition:30 }} So'm</h1>
-    </div>
+    {% if messages %}
+        {% for message in messages %}
+            <div>
+            <div class="alert alert-success text-center" role="alert">
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+<hr>
+        <table style="width: 100%">
+        <style>
+th, td {
+  height: 100px;
+  width: 50%;
+}
 
-    </div>
-                {% if user.is_authenticated %}
-    {% else %}
-                    <div class="text-center">
-                    <a class="btn btn-primary btn-lg" href="{% url 'signin' %}" role="button">Saytga kirish</a>
-                    <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button">Ro'yxatdan o'tish</a>
-                    </div>
-                {% endif %}
+th {
+    border-bottom: 2px solid black;
+}
+
+tr {
+    border-bottom: 1px solid black;
+}
+</style>
+        <tr>
+            <th style="font-size: 35px">Mahsulot</th>
+            <th style="font-size: 35px">Summa</th>
+        </tr>
+        <tr>
+            <td style="font-size: 20px">{{ product.title }}</td>
+            <td style="font-size: 20px">{{ product.price  }}</td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px">Yetkazib berish</td>
+            <td style="font-size: 20px">30 000</td>
+        </tr>
+
+        </table>
+   <h1 style="color: red">Jami : {{ product.price | addition:30 }} So'm</h1>
+</div>
 {% endblock content %}

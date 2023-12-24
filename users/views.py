@@ -14,7 +14,7 @@ from orders.models import Order
 def HomePage(request):
     users = CustomUser.objects.all()
     products = Product.objects.all()
-    products_per_page = 12
+    products_per_page = 15
 
     paginator = Paginator(products, products_per_page)
     page = request.GET.get('page')

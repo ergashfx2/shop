@@ -24,7 +24,17 @@ SECRET_KEY = 'django-insecure-b)z#!p2-i4eg+d8l)w5=-b!aq7f3(w(w5i*-%g3osg^7&f^gr(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["ergashali001.pythonanywhere.com"]
+ALLOWED_HOSTS = ["ergashali001.pythonanywhere.com", "*"]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
 
 # Application definition
 
@@ -42,7 +52,8 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'notifications',
     'django_summernote',
-    'mathfilters'
+    'mathfilters',
+    'rest_framework',
 
 ]
 
@@ -143,4 +154,3 @@ AUTH_USER_MODEL = 'users.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
-
