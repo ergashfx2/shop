@@ -31,6 +31,23 @@ This repository contains the source code for an online shop website built using 
    python manage.py runserver
 5.**Visit http://localhost:8000 in your browser to access the application.**
 
+## Packages Used
+
+- asgiref==3.7.2
+- beautifulsoup4==4.12.2
+- bleach==6.1.0
+- Django==4.2.6
+- django-bootstrap-v5==1.0.11
+- django-bootstrap5==23.3
+- django-summernote==0.8.20.0
+- Pillow==10.1.0
+- six==1.16.0
+- soupsieve==2.5
+- sqlparse==0.4.4
+- tzdata==2023.3
+- webencodings==0.5.1
+
+
 ## Usage
 - Create an account or log in to start exploring the online shop.
 - Add products to your cart and proceed to checkout.
