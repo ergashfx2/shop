@@ -7,17 +7,22 @@
         <a class="btn-primary btn-lg" href="{% url 'add_product'%}">Mahsulot qo'shish</a>
         <hr class="hr" />
     {% endif %}
-
-<div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-6">
         {% for product in products %}
             <div class="col mb-4">
                 <div class="card">
+                                        <a href="{% url 'product_detail' product.id %}">
                     <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                        </a>
                     <div class="card-body">
-                        <h5 class="card-title">{{ product.title |slice:":15" }}...</h5>
+                    {% if product.title|length > 10 %}
+                        <h5 class="card-title">{{ product.title |slice:":10" }}...</h5>
+
+                     {% else %}
+                                                <h5 class="card-title">{{ product.title}}</h5>
+                    {% endif %}
                         <p class="card-text">{{ product.price }}</p>
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm">BATAFSIL</a>
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm product-detail">BATAFSIL</a>
                         {% if user.is_staff %}
                             <br><br><a href="{% url 'edit_product' product.id %}" class="btn btn-primary btn-sm">TAHRIRLASH</a>
                         {% endif %}
@@ -49,7 +54,6 @@
         </span>
         <hr class="hr" />
     </div>
-</div>
 
 
 

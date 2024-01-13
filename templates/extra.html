@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block content %}
+    <style>
+
+        {% if is_pc %}
+            .detailed-image img {
+                width: 30%;
+                height: auto;
+            }
+
+            .order-button .btn-danger {
+                width: 40%;
+                height: 60px;
+                margin-bottom: 10%;
+            }
+
+        {% else %}
+
+            .order-button .btn-danger {
+                width: 70%;
+                height: 200px;
+                margin-bottom: 20%;
+                margin-top: 15%;
+                font-size: 60px;
+            }
+
+            .detailed-image img {
+                width: 100%;
+                height: auto;
+            }
+
+
+            .description {
+                font-size: 40px;
+                padding-top: 5%;
+            }
+
+            .product-title {
+                margin-top: 0;
+                margin-bottom: 5%;
+                font-size: 60px;
+            }
+
+
+            .form-control {
+                /*font-size: 80px;*/
+                height: 100px;
+                border-radius: 30px;
+            }
+
+            .form-control label {
+                font-size: 200px;
+            }
+        {% endif %}
+
+    </style>
+
+    <div {% if is_pc %} class='container' {% else %}  {% endif %}>
+        <div class="container-fluid text-center">
+            <p class="text-center">
+            <div class='detailed-image'>
+                {% if product.image.url %}
+                    <img {% if is_pc %} style="width: 30%; height: auto;" {% else %}
+                                        style="width: 70%; height: auto;" {% endif %}
+                                        class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
+                {% endif %}
+            </div>
+            </p>
+            <hr>
+
+            <div class='product-title'><br>{{ product.title }}</br></div>
+            <hr>
+            <div class='description'>{{ product.description | safe }} </div>
+            <hr>
+            <h1><b>Narxi: {{ product.price }} so'm</b></h1>
+        </div>
+        <form method="post" class='mb-4'>
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+                <div {% if not is_pc %} class='order-button container text-center'{% endif %}>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Buyurtma berish
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Tasdiqlash</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Buyurtmani tasdiqlaysizmi ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+                                <button type="submit" class="btn btn-primary">Tasdiqlayman</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <script>
+                    function disallowSpaces(input) {
+                        input.value = input.value.replace(/\s/g, '');
+                    }
+                </script>
+
+                <div {% if is_pc %} class='container' {% else %}  {% endif %}>
+                    {% bootstrap_form form %}
+                </div>
+                <!-- Button trigger modal -->
+                <div {% if not is_pc %} class='order-button container text-center'{% endif %}>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Buyurtma berish
+                    </button>
+                </div>
+
+                </form>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Tasdiqlash</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Buyurtmani tasdiqlaysizmi ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+                                <button type="submit" class="btn btn-primary">Tasdiqlayman</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+    </div>
+    </div>
+{% endblock content %}

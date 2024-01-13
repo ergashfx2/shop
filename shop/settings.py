@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-b)z#!p2-i4eg+d8l)w5=-b!aq7f3(w(w5i*-%g3osg^7&f^gr(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["ergashali001.pythonanywhere.com", "*"]
+ALLOWED_HOSTS = ["*"]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -49,11 +49,12 @@ INSTALLED_APPS = [
     'users',
     'products',
     'orders',
-    'django_bootstrap5',
     'notifications',
+    'django_user_agents',
     'django_summernote',
     'mathfilters',
     'rest_framework',
+    'django_bootstrap5'
 
 ]
 
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [

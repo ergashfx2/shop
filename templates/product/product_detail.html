@@ -3,32 +3,40 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid">
-        <p class="text-center">
-            {%  if product.image.url %}
-                <img style="width: 30%;height: auto;" class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
-            {% endif %}
+
+    <div class="detail-div">
+    <div class="container-fluid text-center">
         <hr>
-            <h1>{{ product.title }}</h1>
+        <h1 class="text-center">{{ product.title }}</h1>
         <hr>
-    <p>{{ product.description |safe}} </p>
-        <hr>
-    <h1> <b>Narxi : {{ product.price }} so'm</b></h1>
-        </div>
-    <form method="post">
-        {% csrf_token %}
-        {% if user.is_authenticated %}
-            {% bootstrap_button button_type="submit" content="Buyurtma berish" button_size="lg" button_class="btn-danger mx-auto d-block" %}
-        {% else %}
-                <script>
-        function disallowSpaces(input) {
-            // Remove spaces from the input value
-            input.value = input.value.replace(/\s/g, '');
-        }
-    </script>
-            {% bootstrap_form form %}
-            {% bootstrap_button button_type="submit" content="Buyurtma berish" button_size="lg" button_class="btn-danger mx-auto d-block" %}
-            </form>
+        {% if product.image.url %}
+            <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
         {% endif %}
+    </div>
+<di{% if agent.is_pc %} class="container"{% endif %}>
+        <div class="container-fluid text-center">
+            <p  class="product-description">{{ product.description | safe }} </p>
+            <hr>
+            <h1><b>Narxi : {{ product.price }} so'm</b></h1>
         </div>
+<hr class="form-divder">
+        <form method="post">
+                    <h1><b>Buyurtma berish </b></h1>
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+                {% bootstrap_button button_type="submit" content="Buyurtma berish" button_size="lg" button_class="btn-danger mx-auto d-block text-center" %}
+            {% else %}
+                <script>
+                    function disallowSpaces(input) {
+                        // Remove spaces from the input value
+                        input.value = input.value.replace(/\s/g, '');
+                    }
+                </script>
+                {% bootstrap_form form %}
+                {% bootstrap_button button_type="submit" content="Buyurtma berish" button_size="lg" button_class="btn-danger mx-auto d-block" %}
+                </form>
+            {% endif %}
+    </di>
+    </div>
+
 {% endblock content %}

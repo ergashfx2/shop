@@ -9,12 +9,20 @@ from django.contrib.auth.hashers import make_password
 from products.models import Product
 from django.contrib.auth.decorators import login_required
 from orders.models import Order
+from django_user_agents.utils import get_user_agent
 
 
 def HomePage(request):
     users = CustomUser.objects.all()
     products = Product.objects.all()
-    products_per_page = 15
+    user_agent = get_user_agent(request)
+    products_per_page = 0
+    if user_agent.is_pc:
+        products_per_page = 18
+    elif user_agent.is_mobile:
+        products_per_page = 12
+    elif user_agent.is_tablet:
+        products_per_page = 16
 
     paginator = Paginator(products, products_per_page)
     page = request.GET.get('page')
@@ -23,7 +31,8 @@ def HomePage(request):
 
     context = {
         'products': products,
-        'users': users
+        'users': users,
+        'agent' : user_agent
     }
     return render(request, template_name="home.html", context=context)
 

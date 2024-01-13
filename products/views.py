@@ -6,7 +6,7 @@ from orders.models import Order
 from users.models import CustomUser
 from .forms import AddProduct, EditProduct
 from .models import Product
-
+from django_user_agents.middleware import get_user_agent
 
 def Add_Product(request):
     if request.user.is_staff:
@@ -73,6 +73,7 @@ def ProductFilter(request, category):
 
 def ProductDetail(request, pk):
     product = Product.objects.get(pk=pk)
+    agent = get_user_agent(request)
     try:
         user = CustomUser.objects.all()
         form = CreateOrder()
@@ -80,7 +81,8 @@ def ProductDetail(request, pk):
         raise Http404("Given query not found....")
     product = {
         'product': product,
-        'form': form
+        'form': form,
+        'agent' : agent
     }
     if request.method == 'POST':
         if request.user.is_authenticated:
