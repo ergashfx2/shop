@@ -15,8 +15,33 @@ nav {
     margin-top: 5%;
     font-size: 25px;
 }
-@media (max-device-width: 768px) {
 
+nav h1 {
+    display: none;
+}
+@media (max-device-width: 768px) {
+nav div h1 {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding-left: 5%;
+}
+
+    nav div {
+        width: 60%;
+}
+
+nav div img {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+nav .navbar-toggler {
+    float: right;
+    display: inline-block;
+}
 .container-fluid  p .product-description img {
     width: 100%;
     height: auto;
@@ -24,8 +49,17 @@ nav {
     display: block;
 }
     nav {
-        background-color: #484848;
+        background-color: black;
     }
+.custom-toggler.navbar-toggler {
+    border-color: white; /* Set the border color to white */
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    /* Set the stroke color to white in the SVG path */
+}
+
 
     .current-page {
     margin-top: 5%;
