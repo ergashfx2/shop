@@ -40,8 +40,8 @@
         <span class="step-links">
             <hr class="hr" />
             {% if products.has_previous %}
-                <a href="?page=1" >&laquo; Birinchi</a>
-                <a href="?page={{ products.previous_page_number }}">Oldingi</a>
+                <a href="?page=1"  class="btn btn-primary btn-md">&laquo; Birinchi</a>
+                <a href="?page={{ products.previous_page_number }}" class="btn btn-primary btn-md">Oldingi</a>
             {% endif %}
 
             <span class="current-page">
@@ -49,7 +49,7 @@
             </span>
 
             {% if products.has_next %}
-                <a href="?page={{ products.next_page_number }}">Keyingi</a>
+                <a href="?page={{ products.next_page_number }}" class="btn btn-primary btn-md">Keyingi</a>
             {% endif %}
         </span>
         <hr class="hr" />
