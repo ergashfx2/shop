@@ -36,6 +36,7 @@
         {% endfor %}
     </div>
 
+    {% if  products.paginator.num_pages %}
     <div class="pagination">
         <span class="step-links">
             <hr class="hr" />
@@ -54,6 +55,7 @@
         </span>
         <hr class="hr" />
     </div>
+    {% endif %}
 
 
 
