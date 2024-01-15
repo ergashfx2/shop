@@ -1,24 +1,27 @@
 from django import forms
 from orders.models import Order
 
+
 class CreateOrder(forms.Form):
-    name = forms.CharField(label="Ismingizni kiriting", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    phone = forms.CharField(label="Raqamingizni kiriting", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    name = forms.CharField(label="Ismingizni kiriting", max_length=100,
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+    phone = forms.CharField(label="Raqamingizni kiriting", max_length=100,
+                            widget=forms.TextInput(attrs={'class': 'form-control'}))
     location = forms.ChoiceField(label="Manzilingizni tanlang", choices=(
         ('Nomalum', 'Manzilingizni tanlash'),
-        ('Toshkent Shahri', 'Toshkent Shahri'),
-        ('Andijon Viloyati', 'Andijon Viloyati'),
-        ('Buxoro Viloyati', 'Buxoro Viloyati'),
-        ("Farg'ona Viloyati", "Farg'ona Viloyati"),
-        ('Jizzax Viloyati', "Jizzax Viloyati"),
-        ("Qoraqalpog'iston Respublikasi", "Qoraqalpog'iston Respublikasi"),
-        ('Namangan Viloyati', "Namangan Viloyati"),
-        ('Navoiy Viloyati', "Navoiy Viloyati"),
-        ('Samarqand Viloyati', "Samarqand Viloyati"),
-        ('Surxondaryo Viloyati', "Surxondaryo Viloyati"),
-        ('Toshkent Viloyati', "Toshkent Viloyati"),
-        ('Xorazm Viloyati', "Xorazm Viloyati"),
-    ),)
+        ('Toshkent', 'Toshkent Shahri'),
+        ('Andijon', 'Andijon Viloyati'),
+        ('Buxoro', 'Buxoro Viloyati'),
+        ("Farg'ona", "Farg'ona Viloyati"),
+        ('Jizzax', "Jizzax Viloyati"),
+        ("Qoraqalpog'iston", "Qoraqalpog'iston Respublikasi"),
+        ('Namangan', "Namangan Viloyati"),
+        ('Navoiy', "Navoiy Viloyati"),
+        ('Samarqand', "Samarqand Viloyati"),
+        ('Surxondaryo', "Surxondaryo Viloyati"),
+        ('Toshkent', "Toshkent Viloyati"),
+        ('Xorazm', "Xorazm Viloyati"),
+    ), )
 
     def clean(self):
         cleaned_data = super().clean()

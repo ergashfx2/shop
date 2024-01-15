@@ -86,7 +86,7 @@ def ProductDetail(request, pk):
     }
     if request.method == 'POST':
         if request.user.is_authenticated:
-            product_name = Product.objects.get(pk=pk).title
+            product_name = get_object_or_404(Product, pk=pk)
             user = CustomUser.objects.get(username=request.user.username)
             name = user.last_name
             phone = user.phone
@@ -103,7 +103,7 @@ def ProductDetail(request, pk):
         else:
             form = CreateOrder(request.POST)
             if form.is_valid():
-                product_name = Product.objects.get(pk=pk).title
+                product_name = get_object_or_404(Product, pk=pk)
                 name = form.cleaned_data['name']
                 phone = form.cleaned_data['phone']
                 location = form.cleaned_data['location']

@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'django_summernote',
     'mathfilters',
     'rest_framework',
-    'django_bootstrap5'
+    'django_bootstrap5',
+    'drf_yasg',
 
 ]
 

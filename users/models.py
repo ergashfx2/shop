@@ -25,3 +25,6 @@ class CustomUser(AbstractUser):
     phone = models.IntegerField( null=True)
     image = models.ImageField(upload_to='users/',blank=True, null=True)
     location = models.CharField(max_length=255, choices=Location_choices,default=None)
+
+    def __str__(self):
+        return self.username
