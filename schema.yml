@@ -1,0 +1,411 @@
+openapi: 3.0.3
+info:
+  title: Online shop API
+  version: 1.0.0
+  description: Using our site api you can create your own application by connecting
+    our server
+paths:
+  /api/all/:
+    get:
+      operationId: api_all_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/create-order/:
+    post:
+      operationId: api_create_order_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /api/create-product/:
+    post:
+      operationId: api_create_product_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+  /api/delete/{id}/:
+    delete:
+      operationId: api_delete_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/order/delete/{id}/:
+    delete:
+      operationId: api_order_delete_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/order/update/{id}/:
+    put:
+      operationId: api_order_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+    patch:
+      operationId: api_order_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOrder'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOrder'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOrder'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /api/orders/all/:
+    get:
+      operationId: api_orders_all_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/update/{id}/:
+    put:
+      operationId: api_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+    patch:
+      operationId: api_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+components:
+  schemas:
+    CustomerLocationEnum:
+      enum:
+      - choice
+      - toshkent
+      - andijon
+      - buxoro
+      - fargona
+      - jizzax
+      - qoraqalpogiston
+      - namangan
+      - navoiy
+      - samarqand
+      - surxondaryo
+      - toshkent_viloyati
+      - xorazm
+      type: string
+      description: |-
+        * `choice` - Manzilni tanlash
+        * `toshkent` - Toshkent Shahri
+        * `andijon` - Andijon Viloyati
+        * `buxoro` - Buxoro Viloyati
+        * `fargona` - Farg'ona Viloyati
+        * `jizzax` - Jizzax Viloyati
+        * `qoraqalpogiston` - Qoraqalpog'iston Respublikasi
+        * `namangan` - Namangan Viloyati
+        * `navoiy` - Navoiy Viloyati
+        * `samarqand` - Samarqand Viloyati
+        * `surxondaryo` - Surxondaryo Viloyati
+        * `toshkent_viloyati` - Toshkent Viloyati
+        * `xorazm` - Xorazm Viloyati
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        customer_name:
+          type: string
+          maxLength: 200
+        customer_phone:
+          type: string
+          maxLength: 30
+        customer_location:
+          $ref: '#/components/schemas/CustomerLocationEnum'
+        product:
+          type: integer
+      required:
+      - customer_location
+      - customer_name
+      - customer_phone
+      - id
+      - product
+    PatchedOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        customer_name:
+          type: string
+          maxLength: 200
+        customer_phone:
+          type: string
+          maxLength: 30
+        customer_location:
+          $ref: '#/components/schemas/CustomerLocationEnum'
+        product:
+          type: integer
+    PatchedProduct:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+        image:
+          type: string
+          format: uri
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+        image:
+          type: string
+          format: uri
+      required:
+      - description
+      - id
+      - image
+      - price
+      - title
+    StatusEnum:
+      enum:
+      - Qabul qilindi
+      - Bekor qilindi
+      - Yetkazilmoqda
+      - Yetkazib berildi
+      type: string
+      description: |-
+        * `Qabul qilindi` - Qabul qilindi
+        * `Bekor qilindi` - Bekor qilindi
+        * `Yetkazilmoqda` - Yetkazilmoqda
+        * `Yetkazib berildi` - Yetkazib berildi
+    TypeEnum:
+      enum:
+      - Ayollar
+      - Erkaklar
+      - Bolalar
+      - Uy-Xo'jalik
+      - Salomatlik
+      type: string
+      description: |-
+        * `Ayollar` - Ayollar
+        * `Erkaklar` - Erkaklar
+        * `Bolalar` - Bolalar
+        * `Uy-Xo'jalik` - Uy-Xo'jalik
+        * `Salomatlik` - Salomatlik
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
